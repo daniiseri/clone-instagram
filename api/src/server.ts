@@ -45,8 +45,10 @@ app.register(fastifyJWT, {
   secret: 'supersecret',
 })
 
+const APP_URL = process.env.APP_URL || 'http://localhost:3000'
+
 app.register(fastifyCors, {
-  origin: 'http://localhost:3000'
+  origin: APP_URL
 })
 
 app.register(fastifyStatic, {
@@ -60,6 +62,9 @@ app.register(async function (fastify) {
   })
 })
 
+const PORT = Number(process.env.PORT) || 3000
+
 app.listen({
-  port: 3333
+  host: '0.0.0.0',
+  port: PORT
 }).then(() => console.log('Server is running'))
