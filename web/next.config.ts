@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'localhost',
+        hostname: 'https://clone-instagram-qc7i.onrender.com',
       },
     ],
   },
