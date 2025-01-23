@@ -45,7 +45,7 @@ app.register(fastifyJWT, {
   secret: 'supersecret',
 })
 
-const APP_URL = process.env.APP_URL || 'http://localhost:3000'
+const APP_URL = process.env.APP_URL ? JSON.parse(process.env.APP_URL) : 'http://localhost:3000'
 
 app.register(fastifyCors, {
   origin: APP_URL
