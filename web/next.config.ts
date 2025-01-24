@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       {
         hostname: 'https://clone-instagram-qc7i.onrender.com',
       },
+      {
+        hostname: 'localhost'
+      }
     ],
   },
 };
