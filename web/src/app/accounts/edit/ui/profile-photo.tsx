@@ -46,7 +46,7 @@ export function ProfilePhoto({
           {
             profilePhotoURL
               ? (
-                <Image className="rounded-full" width={56} height={56} alt='foto do perfil' src={profilePhotoURL} />
+                <Image className="rounded-full aspect-square" width={56} height={56} alt='foto do perfil' src={profilePhotoURL} />
               ) : (
                 <Image width={56} height={56} alt='foto do perfil' src='/user.svg' />
               )

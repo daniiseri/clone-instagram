@@ -16,7 +16,7 @@ export function DialodDemo({
   title,
   className,
   onClose,
-  closeButton
+  closeButton,
 }: DialodDemoProps) {
   return (
     <Dialog>
@@ -24,13 +24,12 @@ export function DialodDemo({
         {trigger}
       </DialogTrigger>
       <DialogContent
+        closed={!content}
         closeButton={closeButton}
         onClose={onClose}
         className={cn('flex flex-col p-0 h-full gap-0',
-          className
+          className,
         )}>
-
-
         <DialogHeader>
           <DialogTitle className={cn("text-center font-normal",
             title && "p-3"

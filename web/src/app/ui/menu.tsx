@@ -108,7 +108,7 @@ export function Menu({
           },
           { icon: <Image width={24} height={24} alt='nova publicação' src='/add.svg' />, text: 'Criar', dialog: (mode?: 'expanded' | 'compact' | 'collapsed' | null) => <NewPost mode={mode} />, dialogTitle: 'Criar nova publicação' },
           {
-            icon: <div className={cn('border-2 border-transparent rounded-full', isActive === 'Perfil' && "border-black")}><Image className={cn(user?.profilePhotoURL && 'rounded-full',)} width={24} height={24} alt='perfil' src={user?.profilePhotoURL || '/user.svg'} /></div>,
+            icon: <div className={cn('border-2 border-transparent rounded-full', isActive === 'Perfil' && "border-black")}><Image className={cn(user?.profilePhotoURL && 'rounded-full aspect-square',)} width={24} height={24} alt='perfil' src={user?.profilePhotoURL || '/user.svg'} /></div>,
             text: 'Perfil',
             href: '/{username}'
           },
@@ -134,7 +134,7 @@ export function Menu({
             </div>
 
           ) : mode === 'expanded' && (
-            <div className="w-1/2 md:flex-1 md:px-3 md:pt-6 md:pb-4 md:mb-7 md:mt-3">
+            <div className="md:flex-1 md:px-3 md:pt-6 md:pb-4 md:mb-7 md:mt-3">
               <Image className="w-auto" priority height={112} width={112} alt='logo' src='/Instagram_logo.svg.png' />
             </div>
           )

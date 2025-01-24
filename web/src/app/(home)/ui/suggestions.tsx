@@ -19,7 +19,7 @@ export function Suggestions({
     <div className="space-y-4">
       <header className="flex items-center gap-2">
         <div>
-          <Image className={cn(user.profilePhotoURL && 'rounded-full')} width={44} height={44} alt="foto de perfil" src={user.profilePhotoURL || '/user.svg'} />
+          <Image className={cn(user.profilePhotoURL && 'rounded-full aspect-square')} width={44} height={44} alt="foto de perfil" src={user.profilePhotoURL || '/user.svg'} />
         </div>
 
         <div className="flex-1">

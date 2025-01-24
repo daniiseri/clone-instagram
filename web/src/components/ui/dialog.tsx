@@ -47,8 +47,8 @@ const closeButtonVariants = cva(
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { onClose?: () => void } & VariantProps<typeof closeButtonVariants>
->(({ className, children, onClose, closeButton, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { onClose?: () => void, closed: boolean } & VariantProps<typeof closeButtonVariants>
+>(({ className, children, onClose, closed, closeButton, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay onClick={onClose} />
     <DialogPrimitive.Content

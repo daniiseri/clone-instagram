@@ -11,6 +11,8 @@ import { DiscardPost } from "./discard-post";
 import { MoveLeft } from "lucide-react";
 import { uploadAction } from "@/app/accounts/edit/actions/profile-photo-actions";
 import mime from 'mime-types'
+import { useRouter } from "next/navigation";
+import { DialogClose } from "@/components/ui/dialog";
 
 const newPostVariants = cva(
   'h-[28.75rem] overflow-hidden max-w-none border-none',
@@ -42,6 +44,8 @@ export function NewPost({ mode }: { mode?: 'expanded' | 'compact' | 'collapsed' 
   const [length, setLength] = useState<number>()
   const [step, setStep] = useState<VariantProps<typeof newPostVariants>['step']>(1)
   const [checked, setChecked] = useState<string>()
+
+  const router = useRouter()
 
   useEffect(() => {
     if (!previews) return
@@ -83,6 +87,12 @@ export function NewPost({ mode }: { mode?: 'expanded' | 'compact' | 'collapsed' 
     return filters[key]
   }, [checked, filters])
 
+  const onClose = useCallback(function () {
+    setPreviews(undefined)
+    setLength(undefined)
+    setStep(undefined)
+  }, [])
+
   const files = useCallback(async () => {
     if (!previews) return
 
@@ -92,15 +102,22 @@ export function NewPost({ mode }: { mode?: 'expanded' | 'compact' | 'collapsed' 
 
       const blob = await response.blob()
 
-      const [_, fileName] = preview.split('localhost:3000/')
+      const [_, fileName] = preview.split(process.env.NODE_ENV === 'development' ? 'localhost:3000/' : window.location.hostname + '/')
 
       const file = new File([blob], fileName + '.' + mime.extension(blob.type), { type: blob.type })
 
       const formData = new FormData()
       formData.append('file', file)
       await uploadAction(formData)
+
+      router.refresh()
+
+      onClose()
     }
-  }, [previews])
+
+  }, [previews, router, onClose])
+
+
 
   const header = useMemo(() => {
     switch (step) {
@@ -126,24 +143,20 @@ export function NewPost({ mode }: { mode?: 'expanded' | 'compact' | 'collapsed' 
             <div>
               <MoveLeft className="size-10 stroke-1 text-black cursor-pointer" onClick={() => setStep(2)} />
             </div>
-            <div
-              className="text-blue-500 hover:text-blue-900 cursor-pointer"
-              onClick={files}
+            <DialogClose
+              asChild
             >
-              Avançar
-            </div>
+              <div className="text-blue-500 hover:text-blue-900 cursor-pointer"
+                onClick={files}>
+                Avançar
+              </div>
+            </DialogClose>
           </div>
         )
       }
       default:
     }
   }, [step, files])
-
-  function onClose() {
-    setPreviews(undefined)
-    setLength(undefined)
-    setStep(undefined)
-  }
 
   return (
     <DialodDemo
@@ -167,7 +180,7 @@ export function NewPost({ mode }: { mode?: 'expanded' | 'compact' | 'collapsed' 
           )
         }
       </Button>}
-      content={(
+      content={step ? (
         <div className="w-full h-[26.25rem] flex flex-wrap">
           {header}
           {
@@ -185,7 +198,7 @@ export function NewPost({ mode }: { mode?: 'expanded' | 'compact' | 'collapsed' 
             )
           }
         </div>
-      )}
+      ) : null}
     />
   )
 }

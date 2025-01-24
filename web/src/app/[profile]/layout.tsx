@@ -21,11 +21,11 @@ export default async function ProfileLayout({ children, params }: { children: Re
       <main className="md:px-5 pt-8 flex-1 flex flex-col">
         {/**/}
         <header className="flex items-center mb-2 md:mb-11 mx-4 md:mx-0">
-          <div className="w-32 2xs:w-36 md:w-52 mr-7">
-            <Image className="rounded-full mx-auto max-w-40 w-1/2  md:w-5/6" width={160} height={160} alt="avatar" src={user?.profilePhotoURL || '/user.svg'} />
+          <div className="lg:w-72 md-lg:w-60 md:w-48 sm:w-36 mr-7">
+            <Image className="rounded-full mx-auto max-w-40 w-1/2  md:w-3/4 aspect-square" width={160} height={160} alt="avatar" src={user?.profilePhotoURL || '/user.svg'} />
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex-1 flex flex-col gap-4">
             <div className="flex flex-col md:flex-row md:items-center gap-2">
               <span>username</span>
               <div className="flex items-center 4xs:gap-2">

@@ -22,7 +22,7 @@ export default async function Edit() {
             {
               user.profilePhotoURL
                 ? (
-                  <Image className="rounded-full" width={64} height={64} alt="foto de perfil" src={user.profilePhotoURL} />
+                  <Image className="rounded-full aspect-square" width={64} height={64} alt="foto de perfil" src={user.profilePhotoURL} />
                 ) : (
                   <Image width={64} height={64} alt="foto de perfil" src='/user.svg' />
                 )
